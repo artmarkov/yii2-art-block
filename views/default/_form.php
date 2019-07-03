@@ -1,7 +1,6 @@
 <?php
 
 use artsoft\helpers\Html;
-use artsoft\media\widgets\TinyMce;
 use artsoft\models\User;
 use artsoft\widgets\ActiveForm;
 use artsoft\widgets\LanguagePills;
@@ -34,7 +33,12 @@ use artsoft\widgets\LanguagePills;
                     
                     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'content')->widget(TinyMce::className()); ?>
+                    <?= $form->field($model, 'content')->widget(trntv\aceeditor\AceEditor::class,
+                            [
+                                'mode' => 'html',
+                                'theme' => 'sqlserver', //chrome,clouds,clouds_midnight,cobalt,crimson_editor,dawn,dracula,dreamweaver,eclipse,iplastic
+                                                        //merbivore,merbivore_soft,sqlserver,terminal,tomorrow_night,twilight,xcode
+                            ]) ?>
 
                 </div>
             </div>
@@ -45,6 +49,9 @@ use artsoft\widgets\LanguagePills;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
+                    
+                    <?= $form->field($model, 'created_by')->dropDownList(User::getUsersList()) ?>
+                        
                         <?php if (!$model->isNewRecord): ?>
 
                             <div class="form-group clearfix">
@@ -68,16 +75,17 @@ use artsoft\widgets\LanguagePills;
                                 <span><?= $model->updatedBy->username ?></span>
                             </div>
 
-                            <?php if (!$model->isNewRecord): ?>
-                                <?= $form->field($model, 'created_by')->dropDownList(User::getUsersList()) ?>
-                            <?php endif; ?>
-
                         <?php endif; ?>
+                            
+                                
+
 
                         <div class="form-group">
+                            <?= Html::a(Yii::t('art', '&larr; Back to list'), ['/block/default/index'], ['class' => 'btn btn-info']) ?>
+                            
                             <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('art', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('art', 'Cancel'), ['/block/default/index'], ['class' => 'btn btn-default',]) ?>
+                                <?= Html::a(Yii::t('art', 'Cancel'), ['/block/default/index'], ['class' => 'btn btn-default']) ?>
                             <?php else: ?>
                                 <?= Html::submitButton(Yii::t('art', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?=
