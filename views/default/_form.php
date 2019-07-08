@@ -20,7 +20,7 @@ use artsoft\widgets\LanguagePills;
     ?>
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -32,6 +32,8 @@ use artsoft\widgets\LanguagePills;
                     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
                     
                     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+                    
+                    <?= $form->field($model, 'created_by')->dropDownList(User::getUsersList()) ?>
 
                     <?= $form->field($model, 'content')->widget(trntv\aceeditor\AceEditor::class,
                             [
@@ -44,13 +46,17 @@ use artsoft\widgets\LanguagePills;
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
-                    
-                    <?= $form->field($model, 'created_by')->dropDownList(User::getUsersList()) ?>
+                        <div class="form-group clearfix">
+                          <label class="control-label" style="float: left; padding-right: 5px;">
+                             <?= $model->attributeLabels()['id'] ?>: 
+                          </label>
+                               <span><?= $model->id ?></span>
+                        </div>
                         
                         <?php if (!$model->isNewRecord): ?>
 
@@ -76,12 +82,8 @@ use artsoft\widgets\LanguagePills;
                             </div>
 
                         <?php endif; ?>
-                            
-                                
 
-
-                        <div class="form-group">
-                            <?= Html::a(Yii::t('art', '&larr; Back to list'), ['/block/default/index'], ['class' => 'btn btn-info']) ?>
+                        <div class="form-group">                            
                             
                             <?php if ($model->isNewRecord): ?>
                                 <?= Html::submitButton(Yii::t('art', 'Create'), ['class' => 'btn btn-primary']) ?>
