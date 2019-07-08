@@ -70,6 +70,7 @@ class Block extends ActiveRecord implements OwnerAccess
     {
         return [
             [['title', 'content'], 'required'],
+            ['slug', 'required', 'enableClientValidation' => false],
             [['title','content'], 'string'],
             [['created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
