@@ -19,7 +19,7 @@ class BlockSearch extends Block
     public function rules()
     {
         return [
-            [['id', 'created_by', 'created_at', 'updated_at', 'updated_by'], 'integer'],
+            [['id', 'created_by', 'created_at', 'updated_at', 'updated_by', 'sortOrder'], 'integer'],
             [['slug', 'title', 'content'], 'safe'],
         ];
     }

@@ -22,7 +22,8 @@ use himiklab\sortablegrid\SortableGridBehavior;
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_at
- * @property integer $updated_by
+ * @property integer $updated_by 
+ * @property integer $sortOrder
  *
  * @property User $createdBy
  * @property User $updatedBy
@@ -76,6 +77,7 @@ class Block extends ActiveRecord implements OwnerAccess
         return [
             [['title', 'content'], 'required'],
             ['slug', 'required', 'enableClientValidation' => false],
+            ['sortOrder', 'integer'],
             [['title','content'], 'string'],
             [['created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
