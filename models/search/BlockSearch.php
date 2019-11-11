@@ -51,7 +51,7 @@ class BlockSearch extends Block
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                   'sortOrder' => SORT_ASC,
                 ],
             ],
         ]);

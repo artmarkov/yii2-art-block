@@ -2,7 +2,7 @@
 
 use artsoft\grid\GridPageSize;
 use artsoft\grid\GridQuickLinks;
-use artsoft\grid\GridView;
+use artsoft\grid\SortableGridView;
 use artsoft\helpers\Html;
 use artsoft\models\User;
 use artsoft\block\models\Block;
@@ -36,11 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php Pjax::begin(['id' => 'block-grid-pjax']) ?>
 
-            <?=
-            GridView::widget([
+            <?= SortableGridView::widget([
                 'id' => 'block-grid',
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
+                'sortableAction' => ['grid-sort'],
                 'bulkActionOptions' => [
                     'gridId' => 'block-grid',
                     'actions' => [

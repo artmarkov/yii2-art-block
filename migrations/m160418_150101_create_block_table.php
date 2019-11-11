@@ -22,6 +22,7 @@ class m160418_150101_create_block_table extends Migration
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
             'updated_by' => $this->integer(),
+            'sortOrder' => $this->integer(),
         ], $tableOptions);
 
         $this->addForeignKey('fk_block_created_by', self::TABLE_NAME, ['created_by'], '{{%user}}', ['id'], 'SET NULL', 'CASCADE');

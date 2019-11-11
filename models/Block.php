@@ -10,6 +10,7 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use artsoft\behaviors\SluggableBehavior;
 use artsoft\db\ActiveRecord;
+use himiklab\sortablegrid\SortableGridBehavior;
 
 /**
  * This is the model class for table "{{%block}}".
@@ -50,7 +51,11 @@ class Block extends ActiveRecord implements OwnerAccess
                 'in_attribute' => 'title',
                 'out_attribute' => 'slug',
                 'translit' => true           
-            ],
+            ],            
+            'grid-sort' => [
+                'class' => SortableGridBehavior::className(),
+                'sortableAttribute' => 'sortOrder',
+            ],   
             'multilingual' => [
                 'class' => MultilingualBehavior::className(),
                 'langForeignKey' => 'block_id',
